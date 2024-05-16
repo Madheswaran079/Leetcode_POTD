@@ -1,0 +1,22 @@
+//Evaluate Boolean Binary Tree
+
+class Solution {
+    public boolean evaluateTree(TreeNode root) {
+        if(root.val == 2 || root.val == 3) root = traversal(root);
+        return root.val==1;
+    }
+    public static TreeNode traversal(TreeNode curr) {
+        if(curr.left == null && curr.right == null) {
+            return curr;
+        }
+        curr.left = traversal(curr.left);
+        curr.right = traversal(curr.right);
+
+        if(curr.val == 2) 
+            curr.val = (curr.left.val == 1 || curr.right.val == 1) ? 1 : 0;
+        else
+            curr.val = (curr.left.val == 1 && curr.right.val == 1) ? 1 : 0;
+        
+        return curr;
+    }
+}
