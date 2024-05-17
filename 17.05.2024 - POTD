@@ -1,0 +1,17 @@
+//Delete leaf nodes with a given value
+
+class Solution {
+    public TreeNode removeLeafNodes(TreeNode root, int target) {
+        root = removeLeafNodesRecursive(root,target);
+        return root;
+    }
+    public static TreeNode removeLeafNodesRecursive(TreeNode curr, int t) {
+        if(curr == null) return curr;
+
+        curr.left = removeLeafNodesRecursive(curr.left,t);
+        curr.right = removeLeafNodesRecursive(curr.right,t);
+        if(curr.val == t && curr.left == null && curr.right == null) curr = null;
+
+        return curr;
+    }
+}
